@@ -27,8 +27,8 @@ class alphabet:
     class strings:
         def __init__(self, s: list):
             self.s = s
-        def addChar(self, c):
-            self.s.append(c)
+        def insertChar(self, c):
+            self.s.insert(0,c)
         def __str__(self):
             #getCharater and format into a string
             #binary ex. [(0),(1)]
@@ -45,13 +45,19 @@ class alphabet:
 
     #generate Nth string lexicographic order
     def lexicographic(self, n):
-        n0 = n
         s = self.strings(s = [])
         sizeAlphabet = len(self.a)
+        exp = 0
+        i = 0
         if n == 0:
             return s
-        while n != 0:
-            print(self.a[n % sizeAlphabet].getCharater())
-            s.addChar(self.a[n % sizeAlphabet].getCharater())
-            n = int(n / sizeAlphabet)
-        #print(s)
+        while True:
+            if sizeAlphabet ** exp <= n:
+                n -= sizeAlphabet ** exp
+                exp += 1
+            else:
+                while i < exp:
+                    s.insertChar(self.a[int(n % sizeAlphabet)])
+                    n = int(n /sizeAlphabet)
+                    i += 1
+                return(s)

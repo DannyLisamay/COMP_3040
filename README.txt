@@ -26,4 +26,7 @@ Decide on a data type to represent alphabets and characters.
 
 9/14
   Task 1-2 complete.
-  Working on task 3.
+  Working on task 3. Write a function that generates the Nth string of a given alphabet’s lexicographic order.
+
+9/15
+  Task 3 complete
