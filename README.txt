@@ -30,3 +30,12 @@ Decide on a data type to represent alphabets and characters.
 
 9/15
   Task 3 complete
+  Created DFA class
+
+9/16
+  Created task 4,5,6
+  Task 4 complete
+  5,6 in the works... Testing
+
+9/17
+  Task 5,6 complete

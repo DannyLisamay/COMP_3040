@@ -1,18 +1,18 @@
 #Danny Lisamay
 #9/11
-#Test Class
+#Aplhabet Test Class
 #9/14
 import alphabet
 import character
 
 #**Testing Alphabets
-#empty alphabet
-#emptyAlphabet = alphabet.alphabet()
+#***empty alphabet
+emptyAlphabet = alphabet.alphabet()
 #print(emptyAlphabet)
 #**binary alphabet
 binary = [character.character("0"), character.character("1")]
 binaryAlphabet = alphabet.alphabet(binary)
-print(binaryAlphabet)
+#print(binaryAlphabet)
 #**Pen Tablet alphabet
 #penAndTablet = [character.character("Pen"), character.character("Tablet")]
 #penAndTabletAlphabet = alphabet.alphabet(penAndTablet)
@@ -24,4 +24,5 @@ print(binaryAlphabet)
 #print(s)
 
 #**lexicographic test
-print (binaryAlphabet.lexicographic(14))
+print (emptyAlphabet.lexicographic(7))
+print (binaryAlphabet.lexicographic(15))
