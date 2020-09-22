@@ -39,3 +39,6 @@ Decide on a data type to represent alphabets and characters.
 
 9/17
   Task 5,6 complete
+
+9/18
+  Started Task 7

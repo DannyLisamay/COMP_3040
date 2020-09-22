@@ -3,15 +3,14 @@
 #Aplhabet Test Class
 #9/14
 import alphabet
-import character
 
 #**Testing Alphabets
 #***empty alphabet
-emptyAlphabet = alphabet.alphabet()
+emptyAlphabet = alphabet.Alphabet()
 #print(emptyAlphabet)
 #**binary alphabet
-binary = [character.character("0"), character.character("1")]
-binaryAlphabet = alphabet.alphabet(binary)
+binary = [alphabet.Character("0"), alphabet.Character("1")]
+binaryAlphabet = alphabet.Alphabet(binary)
 #print(binaryAlphabet)
 #**Pen Tablet alphabet
 #penAndTablet = [character.character("Pen"), character.character("Tablet")]
@@ -24,5 +23,5 @@ binaryAlphabet = alphabet.alphabet(binary)
 #print(s)
 
 #**lexicographic test
-print (emptyAlphabet.lexicographic(7))
-print (binaryAlphabet.lexicographic(15))
+print (emptyAlphabet.Lexicographic(7))
+print (binaryAlphabet.Lexicographic(15))

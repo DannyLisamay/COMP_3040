@@ -2,14 +2,58 @@
 #9/11
 #alphabet class
 #alphabet is a list of characters
+#character class
+#some object with equality and printing
 #9/13
 #finished task 1 & 2
 #created lexicographic function
 #9/15
 #finised task 3 lexicographic function
 
-import character
-class alphabet:
+#charater class
+class Character:
+    def __init__(self, c):
+        self.c = c
+    #set
+    def setCharater(self, c):
+        self.c = c
+    #get
+    def getCharater(self):
+        return self.c
+    #toString
+    def __str__(self):
+        return self.c
+
+#strings class
+class Strings:
+    def __init__(self, s: list):
+        self.s = s
+    #insert character
+    def insertChar(self, c):
+        self.s.insert(0,c)
+    #checks if emptyAlphabet
+    def isEmpty(self):
+        bool = False
+        if len(self.s) == 0:
+            bool = True
+        return bool
+    #toString format
+    def __str__(self):
+        #getCharater and format into a string
+        #binary ex. [(0),(1)]
+        str = "String = ["
+        if len(self.s) != 0:
+            for x in range(len(self.s)):
+                str += "(" + self.s[x].getCharater() + ")"
+                if x != len(self.s) - 1:
+                    str += ","
+        else:
+            str += '\u00D8'
+        str += "]"
+        return str
+
+#alphabet class
+class Alphabet:
     #alphabet List
     def __init__(self, a = []):
         self.a = a
@@ -33,38 +77,9 @@ class alphabet:
         if len(self.a) == 0:
             bool = True
         return bool
-
-    #strings class
-    class strings:
-        def __init__(self, s: list):
-            self.s = s
-        #insert character
-        def insertChar(self, c):
-            self.s.insert(0,c)
-        #checks if emptyAlphabet
-        def isEmpty(self):
-            bool = False
-            if len(self.s) == 0:
-                bool = True
-            return bool
-        #toString format
-        def __str__(self):
-            #getCharater and format into a string
-            #binary ex. [(0),(1)]
-            str = "String = ["
-            if len(self.s) != 0:
-                for x in range(len(self.s)):
-                    str += "(" + self.s[x].getCharater() + ")"
-                    if x != len(self.s) - 1:
-                        str += ","
-            else:
-                str += '\u00D8'
-            str += "]"
-            return str
-
     #generate Nth string lexicographic order
-    def lexicographic(self, n):
-        s = self.strings(s = [])
+    def Lexicographic(self, n):
+        s = Strings(s = [])
         sizeAlphabet = len(self.a)
         exp = 0
         i = 0
