@@ -42,3 +42,7 @@ Decide on a data type to represent alphabets and characters.
 
 9/18
   Started Task 7
+
+9/22
+  rewrote Task 5,6,7
+  
