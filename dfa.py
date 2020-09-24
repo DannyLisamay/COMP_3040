@@ -33,6 +33,8 @@ class DFA:
     #*******TASK #10************
     # dfa takes takes string and determines if accepted
     def isStringAccepted(self, s):
+        self.currentState = self.startState
+        self.trace.clear()
         for x in s:
             self.transitionToState(x)
             self.trace.append(self.currentState)
@@ -84,8 +86,27 @@ def DFA_StringOfChar(c):
     return DFA(states, ["0","1"], transitionFunction, states[0], ["q1"])
 
 #********TASK #8************
-#Dozen DFA examples
-# Did 7 Examples
+#DFA examples
+# dfa accepts even string length
+def DFA_Even():
+    states = ["qEven", "qOdd"]
+    transitionFunction = dict()
+    transitionFunction[("qEven", "0")] = "qOdd"
+    transitionFunction[("qEven", "1")] = "qOdd"
+    transitionFunction[("qOdd", "0")] = "qEven"
+    transitionFunction[("qOdd", "1")] = "qEven"
+    return DFA(states, ["0","1"], transitionFunction, states[0], ["qEven"])
+
+# dfa accepts odd string length
+def DFA_Odd():
+    states = ["qEven", "qOdd"]
+    transitionFunction = dict()
+    transitionFunction[("qEven", "0")] = "qOdd"
+    transitionFunction[("qEven", "1")] = "qOdd"
+    transitionFunction[("qOdd", "0")] = "qEven"
+    transitionFunction[("qOdd", "1")] = "qEven"
+    return DFA(states, ["0","1"], transitionFunction, states[0], ["qOdd"])
+
 # dfa in textbook example figure 1.4 state diagram if M1
 def DFA_M1():
     states = ["q0", "q1", "q3"]
@@ -118,7 +139,6 @@ def DFA_M3():
     transitionFunction[("q1","1")] = "q1"
     return DFA(states, ["0","1"], transitionFunction, states[0], ["q0"])
 
-
 # dfa textbook example figure 1.12 state diagram if M4
 def DFA_M4():
     states = ["s", "q1", "q2", "r1", "r2"]
@@ -134,26 +154,6 @@ def DFA_M4():
     transitionFunction[("r2","a")] = "r2"
     transitionFunction[("r2","b")] = "r1"
     return DFA(states, ["a","b"], transitionFunction, states[0], ["q1","r1"])
-
-# dfa accepts even string length
-def DFA_Even():
-    states = ["qEven" "qOdd"]
-    transitionFunction = dict()
-    transitionFunction[("qEven", "0")] = "qEven"
-    transitionFunction[("qEven", "1")] = "qOdd"
-    transitionFunction[("qOdd", "0")] = "qEOdd"
-    transitionFunction[("qOdd", "1")] = "qEven"
-    return DFA(states, ["0","1"], transitionFunction, states[0], ["qEven"])
-
-# dfa accepts odd string length
-def DFA_Even():
-    states = ["qEven" "qOdd"]
-    transitionFunction = dict()
-    transitionFunction[("qEven", "0")] = "qEven"
-    transitionFunction[("qEven", "1")] = "qOdd"
-    transitionFunction[("qOdd", "0")] = "qEOdd"
-    transitionFunction[("qOdd", "1")] = "qEven"
-    return DFA(states, ["0","1"], transitionFunction, states[0], ["qOdd"])
 
 #dfa textbook example figure 1.22 Accepts strings contaiing 001
 def DFA_Strings001():

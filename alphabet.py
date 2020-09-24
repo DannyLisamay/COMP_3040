@@ -10,6 +10,8 @@
 #9/15
 #finised task 3 lexicographic function
 
+
+#********TASK #1************
 #charater class
 class Character:
     def __init__(self, c):
@@ -24,6 +26,7 @@ class Character:
     def __str__(self):
         return self.c
 
+#********TASK #2************
 #strings class
 class Strings:
     def __init__(self, s: list):
@@ -77,6 +80,8 @@ class Alphabet:
         if len(self.a) == 0:
             bool = True
         return bool
+
+    #********TASK #3************
     #generate Nth string lexicographic order
     def Lexicographic(self, n):
         s = Strings(s = [])
