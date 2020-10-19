@@ -23,5 +23,9 @@ binaryAlphabet = alphabet.Alphabet(binary)
 #print(s)
 
 #**lexicographic test
-print (emptyAlphabet.Lexicographic(7))
+print (emptyAlphabet.Lexicographic(1))
+print (emptyAlphabet.Lexicographic(20))
+print (emptyAlphabet.Lexicographic(2))
+print (emptyAlphabet.Lexicographic(3))
+print (emptyAlphabet.Lexicographic(5))
 print (binaryAlphabet.Lexicographic(15))

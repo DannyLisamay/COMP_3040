@@ -86,16 +86,21 @@ class Alphabet:
     def Lexicographic(self, n):
         s = Strings(s = [])
         sizeAlphabet = len(self.a)
+        #exponent set to 0
         exp = 0
         i = 0
+        #if string is empty or alphabet is empty return empty string
         if n == 0 or self.isEmpty():
             return s
+        #loop until return
         while True:
+            #which n ^ exp lexi is in.
             if sizeAlphabet ** exp <= n:
                 n -= sizeAlphabet ** exp
                 exp += 1
             else:
                 while i < exp:
+                    #professors example
                     s.insertChar(self.a[int(n % sizeAlphabet)])
                     n = int(n /sizeAlphabet)
                     i += 1

@@ -48,3 +48,6 @@ Decide on a data type to represent alphabets and characters.
 
 9/23
   Task 8/9 Completed
+9/23
+  Task 1 - 10 Complete
+  After watching lecture may have to rewrite some code
