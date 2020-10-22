@@ -57,4 +57,7 @@ Decide on a data type to represent alphabets and characters.
 
 10/18
   Rewrote DFA transition functions
-  Starting task 12. (Maybe a search algo like breadth-first?)  
+  Starting task 12. (Maybe a search algo like breadth-first?)
+
+10/21
+  Task 12 Done kind of. Works for my DFAs not sure if it will work for all DFA
