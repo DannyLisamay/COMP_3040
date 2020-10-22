@@ -227,3 +227,16 @@ dfaStrings001 = dfa.DFA_Strings001()
 #print(dfaStrings001.trace("000000"))
 #print(dfaStrings001.trace("011"))
 #print(dfaStrings001.trace("0110"))
+
+
+#*******TASK #11 Test************
+#print(dfaNoStrings.getAcceptedString());
+#print(dfaEmptyString.getAcceptedString());
+#print(dfaStringOfChar.getAcceptedString());
+#print(dfaEven.getAcceptedString());
+#print(dfaOdd.getAcceptedString());
+#print(dfaM1.getAcceptedString());
+#print(dfaM2.getAcceptedString());
+#print(dfaM3.getAcceptedString());
+print(dfaM4.getAcceptedString());
+print(dfaStrings001.getAcceptedString());

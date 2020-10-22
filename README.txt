@@ -51,3 +51,10 @@ Decide on a data type to represent alphabets and characters.
 9/23
   Task 1 - 10 Complete
   After watching lecture may have to rewrite some code
+
+10/18
+  Finished Task #11
+
+10/18
+  Rewrote DFA transition functions
+  Starting task 12. (Maybe a search algo like breadth-first?)  
