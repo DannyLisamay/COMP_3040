@@ -21,7 +21,6 @@ class DFA:
     def inAcceptState(self):
         return self.currentState in self.acceptStates
 
-
     # Helper function for task 10
     # old way used a map / new one takes function
     # transition to next state given key [state, char]
@@ -68,14 +67,14 @@ class DFA:
             traceList.append(self.currentState)
         return traceList
 
-    #*******TASK #11************
-    # Maybe like DFS search?
+    #*******TASK #12************
+    # Maybe like a DFS?
     def getAcceptedString(self):
         # Checks if accepted states are in states list
         if not set(self.acceptStates).intersection(self.states):
             return False
         return self.DFS()
-    # helper function for task 11
+
     # DFS kinda?
     def DFS(self):
         # accept strings
@@ -92,14 +91,24 @@ class DFA:
             return acceptedString
         # checks for accepted
         for x in self.alpha:
-            # takes alphabet char and visted list:
-            #check if next state in transition has been visited
+            # takes alphabet char
+            # check if next state in transition has been visited
+            # if in accept state retun string
             while not visited[self.states.index(self.transitionFunction(self, x))]:
                 acceptedString.append(x)
                 visited[self.states.index(self.currentState)] = True
                 self.currentState = self.transitionFunction(self, x)
                 if self.inAcceptState():
                     return acceptedString
+            # accept String not found
+
+    #*******TASK #13************
+    # return complement DFA
+    # had to change some of my DFA transition function to work with this function.
+    def complement(self):
+        # complementAccecptStates list is the complement of states list and acceptStates list.
+        complementAccecptStates = (list(list(set(self.states)-set(self.acceptStates)) + list(set(self.acceptStates)-set(self.states))))
+        return DFA(self.states, self.alpha, self.transitionFunction, self.startState, complementAccecptStates)
 
 #DFAs
 #*******TASK #5************
@@ -118,30 +127,30 @@ def DFA_NoStrings():
 #** dfa accepts empty string
 # empty and non empty sting used for Testing
 def DFA_EmptyStrings():
-    states = ["q0", "q1"]
+    states = ["q0", "q1", "q3"]
     #transitionFunction = dict()
     #transitionFunction[("q0", "")] = "q1"
     #transitionFunction[("q1", "")] = "q1"
     def transitionFunction(self, c):
-        if c == " " :
+        if c == " " and self.currentState != states[2]:
             return states[1]
         else:
-            return None
+            return states[2]
     return DFA(states, [" ","0","1"], transitionFunction, states[0], ["q1"])
 
 #********TASK #7************
 #*** dfa function takes charater and returns dfa that only accepts strings of that character
 # once a charater is not c dfa state goes to null
 def DFA_StringOfChar(char):
-    states = ["q0", "q1"]
+    states = ["q0", "q1", "q3"]
     #transitionFunction = dict()
     #transitionFunction[("q0", c)] = "q1"
     #transitionFunction[("q1", c)] = "q1"
     def transitionFunction(self, c):
-        if c == char:
+        if c == char and self.currentState != states[2]:
             return states[1]
         else:
-            return None
+            return states[2]
     return DFA(states, ["0","1"], transitionFunction, states[0], ["q1"])
 
 #********TASK #8************
