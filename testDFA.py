@@ -449,3 +449,10 @@ complement_dfaStrings001 = dfaStrings001.complement()
 #print(complement_dfaStrings001.trace("000000"))
 #print(complement_dfaStrings001.trace("011"))
 #print(complement_dfaStrings001.trace("0110"))
+
+
+#*******TASK #14 Test************
+listA = ["0","1"]
+listB = ["0","1","2"]
+print(list(set(listB) - set(listA)))
+#*******TASK #15 ************

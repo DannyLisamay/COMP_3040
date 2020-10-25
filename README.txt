@@ -61,3 +61,6 @@ Decide on a data type to represent alphabets and characters.
 
 10/21
   Task 12 Done, kind of. Works for my DFAs not sure if it will work for all DFA
+
+10/25
+  Task 13 Done, had to modify some DFAs.
