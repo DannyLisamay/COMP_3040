@@ -110,6 +110,8 @@ class DFA:
         complementAccecptStates = (list(list(set(self.states)-set(self.acceptStates)) + list(set(self.acceptStates)-set(self.states))))
         return DFA(self.states, self.alpha, self.transitionFunction, self.startState, complementAccecptStates)
 
+################################################################################
+# Concrete DFA
 #DFAs
 #*******TASK #5************
 #** dfa accepts no strings
@@ -141,7 +143,7 @@ def DFA_EmptyStrings():
 #********TASK #7************
 #*** dfa function takes charater and returns dfa that only accepts strings of that character
 # once a charater is not c dfa state goes to null
-def DFA_StringOfChar(char):
+def DFA_StringOfChar(c):
     states = ["q0", "q1", "q3"]
     #transitionFunction = dict()
     #transitionFunction[("q0", c)] = "q1"
@@ -295,11 +297,14 @@ def DFA_Strings001():
             return states[3]
     return DFA(states, ["0","1"], transitionFunction, states[0], ["q001"])
 
-    #*******TASK #14************
-    # Takes two DFAs and return 3rd dfa that accepts string from either argument.
-    def union(self, dfa1, dfa2):
-        # states list is dfa1 + dfa2 states without duplicates
-        states = dfa1.self.states + list(set(dfa2.self.states) - set(dfa1.self.states))
-        # alpha list is dfa1 + dfa2 alpha without duplicates
-        alpha = dfa1.self.alpha + list(set(dfa2.self.alpha) - set(dfa1.self.alpha))
+"""
+#*******TASK #14************
+# Takes two DFAs and return 3rd dfa that accepts string from either argument.
+def union(self, dfa1, dfa2):
+    # states pairs
+    states = []
+    # alpha list is dfa1 + dfa2 alpha without duplicates
+    alpha = dfa1.self.alpha + list(set(dfa2.self.alpha) - set(dfa1.self.alpha))
+    # transitionFunction
         return DFA()
+"""

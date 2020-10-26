@@ -64,3 +64,9 @@ Decide on a data type to represent alphabets and characters.
 
 10/25
   Task 13 Done, had to modify some DFAs.
+
+10/26
+  Realized I should rewrite my DFAs...
+  Rewriting DFAs..
+  Task 11-13 Not done yet.
+  Wish me luck.
