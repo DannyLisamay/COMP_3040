@@ -61,12 +61,43 @@ class DFA:
         # Didn't find accepted state
         return False
 
-
     #*******TASK #13************
     # return complement DFA
     # uses lambda to return complment of acceptFunction
     def complement(self):
         return DFA(self.statesFunction, self.alpha, self.startState, self.transitionFunction, lambda qi: not self.acceptFunction(qi))
+
+#*******TASK #14************
+# Takes two DFAs and returns a third DFA that accepts a string if either argument accepts it.
+def union(Qa, Qb):
+    # Elemnets of Qa paired with Elements of Qb
+    statesFunction = lambda qi: Qa.statesFunction(qi[0]) and Qb.statesFunction(qi[1])
+    # alphabet pair Qa, Qb
+    alpha = [Qa.alpha, Qb.alpha]
+    # start state pair Qa, Qb
+    startState = [Qa.startState, Qb.startState]
+    # transition return pair Qa.transitionFunction(qi[0]) and Qb.transitionFunction(qi[1]
+    transitionFunction = lambda qi, c: [Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)]
+    # acceptFunction returns true if either Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1]) is true
+    acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1])
+    return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)
+
+#*******TASK #16************
+# Takes two DFAs and returns a third DFA that accepts a string if both arguments accepts it.
+# Similar to task #14, however for the acceptFunction instead of acceptFunction
+# True for Qa or Qb, its acceptFunction True Qa and Qb.
+def intersection(Qa, Qb):
+    # Elemnets of Qa paired with Elements of Qb
+    statesFunction = lambda qi: Qa.statesFunction(qi[0]) and Qb.statesFunction(qi[1])
+    # alphabet pair Qa, Qb
+    alpha = [Qa.alpha, Qb.alpha]
+    # start state pair Qa, Qb
+    startState = [Qa.startState, Qb.startState]
+    # transition return pair Qa.transitionFunction(qi[0]) and Qb.transitionFunction(qi[1]
+    transitionFunction = lambda qi, c: [Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)]
+    # acceptFunction returns true for both Qa.acceptFunction(qi[0]) and Qb.acceptFunction(qi[1]) is true
+    acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) and Qb.acceptFunction(qi[1])
+    return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)
 
 #DFA
 #** dfa accepts no strings
@@ -246,18 +277,3 @@ def DFA_Strings001():
         transitionFunction,
         lambda qi: qi == "q001"
     )
-
-#*******TASK #14************
-# Takes two DFAs and returns a third DFA that accepts a string if either argument accepts it.
-def union(Qa, Qb):
-    # Elemnets of Qa paired with Elements of Qb
-    statesFunction = lambda qi: Qa.statesFunction(qi[0]) and Qb.statesFunction(qi[1])
-    # alphabet pair Qa, Qb
-    alpha = [Qa.alpha, Qb.alpha]
-    # start state pair Qa, Qb
-    startState = [Qa.startState, Qb.startState]
-    # transition return pair Qa.transitionFunction(qi[0]) and Qb.transitionFunction(qi[1]
-    transitionFunction = lambda qi, c: [Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)]
-    # acceptFunction returns true if either Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1]) is true
-    acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1])
-    return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)

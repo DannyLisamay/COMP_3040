@@ -1,6 +1,3 @@
-Write a dozen tests for your union function.
-(Intersect) Write a function that takes two DFAs and returns a third DFA that accepts a string if both arguments accepts it.
-Write a dozen tests for your intersection function.
 (Subset) Write a function which takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y.
 Write a dozen tests for your subset function.
 (Equality) Write a function which takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y and vice versa.

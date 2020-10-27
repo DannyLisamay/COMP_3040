@@ -74,4 +74,10 @@ Decide on a data type to represent alphabets and characters.
 10/26
   Now with new DFA made with membership functions
   Done task 11, 12, 13.
-  Task 12 was extremely difficult for me 
+  Task 12 was extremely difficult for me
+
+10/27
+  Task 14, 15 Completed... 2am.
+  Completed Task 16.
+  Starting Task 17, test cases for task 16.
+  Task 16, 17  Completed.

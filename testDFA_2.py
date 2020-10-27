@@ -500,6 +500,7 @@ dfaM3 = dfa_ver2.DFA_M3()
 dfaM4 = dfa_ver2.DFA_M4()
 dfaStrings001 = dfa_ver2.DFA_Strings001()
 """
+"""
 # dfaEmptyString union dfaStringOfChar
 dfaEmptyString_U_dfaStringOfChar = dfa_ver2.union(dfaEmptyString, dfaStringOfChar)
 print("*******************")
@@ -658,3 +659,129 @@ print(dfaStrings001UdfaStringOfChar.isStringAccepted(" c"))
 print(dfaStrings001UdfaStringOfChar.isStringAccepted(" 00"))
 print(dfaStrings001UdfaStringOfChar.isStringAccepted(" c110 "))
 print(dfaStrings001UdfaStringOfChar.isStringAccepted(" s  d "))
+"""
+
+#*******TASK #16 Test************
+#*******TASK #17 ************
+# Intersection Tests
+
+# dfaEven intersection dfaM1
+dfaEvenNdfaM1 = dfa_ver2.intersection(dfaEven, dfaM1)
+print("*******************")
+print("dfaEvenNdfaM1")
+# Pass
+print(dfaEvenNdfaM1.isStringAccepted("01"))
+print(dfaEvenNdfaM1.isStringAccepted("11"))
+print(dfaEvenNdfaM1.isStringAccepted("0101"))
+print(dfaEvenNdfaM1.isStringAccepted("1101"))
+
+# Fail
+print(dfaEvenNdfaM1.isStringAccepted("00"))
+print(dfaEvenNdfaM1.isStringAccepted("001"))
+print(dfaEvenNdfaM1.isStringAccepted("000"))
+print(dfaEvenNdfaM1.isStringAccepted("0110"))
+
+# dfaEven intersection dfaM2
+dfaEvenNdfaM2 = dfa_ver2.intersection(dfaEven, dfaM2)
+print("*******************")
+print("dfaEvenNdfaM2")
+# Pass
+print(dfaEvenNdfaM2.isStringAccepted("11"))
+print(dfaEvenNdfaM2.isStringAccepted("1111"))
+print(dfaEvenNdfaM2.isStringAccepted("01"))
+print(dfaEvenNdfaM2.isStringAccepted("0111"))
+# Fail
+print(dfaEvenNdfaM2.isStringAccepted("00"))
+print(dfaEvenNdfaM2.isStringAccepted("001"))
+print(dfaEvenNdfaM2.isStringAccepted("0100"))
+print(dfaEvenNdfaM2.isStringAccepted("11011"))
+
+# dfaEven intersection dfaM3
+dfaEvenNdfaM3 = dfa_ver2.intersection(dfaEven, dfaM3)
+print("*******************")
+print("dfaEvenNdfaM3")
+# Pass
+print(dfaEvenNdfaM3.isStringAccepted("00"))
+print(dfaEvenNdfaM3.isStringAccepted("1110"))
+print(dfaEvenNdfaM3.isStringAccepted("10"))
+print(dfaEvenNdfaM3.isStringAccepted("0010"))
+# Fail
+print(dfaEvenNdfaM3.isStringAccepted("01"))
+print(dfaEvenNdfaM3.isStringAccepted("001"))
+print(dfaEvenNdfaM3.isStringAccepted("0101"))
+print(dfaEvenNdfaM3.isStringAccepted("11011"))
+
+# dfaOdd intersection dfaM1
+dfaOddNdfaM1 = dfa_ver2.intersection(dfaOdd, dfaM1)
+print("*******************")
+print("dfaOddNdfaM1")
+# Pass
+print(dfaOddNdfaM1.isStringAccepted("1"))
+print(dfaOddNdfaM1.isStringAccepted("001"))
+print(dfaOddNdfaM1.isStringAccepted("101"))
+print(dfaOddNdfaM1.isStringAccepted("00101"))
+# Fail
+print(dfaOddNdfaM1.isStringAccepted("01"))
+print(dfaOddNdfaM1.isStringAccepted("010"))
+print(dfaOddNdfaM1.isStringAccepted("0101"))
+print(dfaOddNdfaM1.isStringAccepted("11010"))
+
+# dfaOdd intersection dfaM2
+dfaOddNdfaM2 = dfa_ver2.intersection(dfaOdd, dfaM2)
+print("*******************")
+print("dfaOddNdfaM2")
+# Pass
+print(dfaOddNdfaM2.isStringAccepted("1"))
+print(dfaOddNdfaM2.isStringAccepted("011"))
+print(dfaOddNdfaM2.isStringAccepted("101"))
+print(dfaOddNdfaM2.isStringAccepted("00101"))
+# Fail
+print(dfaOddNdfaM2.isStringAccepted("01"))
+print(dfaOddNdfaM2.isStringAccepted("010"))
+print(dfaOddNdfaM2.isStringAccepted("0101"))
+print(dfaOddNdfaM2.isStringAccepted("11010"))
+
+# dfaOdd intersection dfaM3
+dfaOddNdfaM3 = dfa_ver2.intersection(dfaOdd, dfaM3)
+print("*******************")
+print("dfaOddNdfaM3")
+# Pass
+print(dfaOddNdfaM3.isStringAccepted("0"))
+print(dfaOddNdfaM3.isStringAccepted("110"))
+print(dfaOddNdfaM3.isStringAccepted("100"))
+print(dfaOddNdfaM3.isStringAccepted("00100"))
+# Fail
+print(dfaOddNdfaM3.isStringAccepted("01"))
+print(dfaOddNdfaM3.isStringAccepted("011"))
+print(dfaOddNdfaM3.isStringAccepted("0100"))
+print(dfaOddNdfaM3.isStringAccepted("11011"))
+
+# dfaEven intersection dfaStrings001
+dfaEvenNdfaStrings001 = dfa_ver2.intersection(dfaEven, dfaStrings001)
+print("*******************")
+print("dfaEvenNdfaStrings001")
+# Pass
+print(dfaEvenNdfaStrings001.isStringAccepted("0001"))
+print(dfaEvenNdfaStrings001.isStringAccepted("000100"))
+print(dfaEvenNdfaStrings001.isStringAccepted("1001"))
+print(dfaEvenNdfaStrings001.isStringAccepted("110010"))
+# Fail
+print(dfaEvenNdfaStrings001.isStringAccepted("01"))
+print(dfaEvenNdfaStrings001.isStringAccepted("001"))
+print(dfaEvenNdfaStrings001.isStringAccepted("01001"))
+print(dfaEvenNdfaStrings001.isStringAccepted("11011"))
+
+# dfaOdd intersection dfaStrings001
+dfaOddNdfaStrings001 = dfa_ver2.intersection(dfaOdd, dfaStrings001)
+print("*******************")
+print("dfaOddNdfaM3")
+# Pass
+print(dfaOddNdfaStrings001.isStringAccepted("001"))
+print(dfaOddNdfaStrings001.isStringAccepted("00100"))
+print(dfaOddNdfaStrings001.isStringAccepted("10011"))
+print(dfaOddNdfaStrings001.isStringAccepted("00100"))
+# Fail
+print(dfaOddNdfaStrings001.isStringAccepted("0010"))
+print(dfaOddNdfaStrings001.isStringAccepted("01101"))
+print(dfaOddNdfaStrings001.isStringAccepted("010010"))
+print(dfaOddNdfaStrings001.isStringAccepted("11011"))
