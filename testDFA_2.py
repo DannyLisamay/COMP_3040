@@ -485,8 +485,176 @@ print(complement_dfaStrings001.trace("000000"))
 print(complement_dfaStrings001.trace("011"))
 print(complement_dfaStrings001.trace("0110"))
 """
-"""
 #*******TASK #14 Test************
-
 #*******TASK #15 ************
+# Union Tests
 """
+dfaNoStrings = dfa_ver2.DFA_NoStrings()
+dfaEmptyString = dfa_ver2.DFA_EmptyStrings()
+dfaStringOfChar = dfa_ver2.DFA_StringOfChar("c")
+dfaEven = dfa_ver2.DFA_Even()
+dfaOdd = dfa_ver2.DFA_Odd()
+dfaM1 = dfa_ver2.DFA_M1()
+dfaM2 = dfa_ver2.DFA_M2()
+dfaM3 = dfa_ver2.DFA_M3()
+dfaM4 = dfa_ver2.DFA_M4()
+dfaStrings001 = dfa_ver2.DFA_Strings001()
+"""
+# dfaEmptyString union dfaStringOfChar
+dfaEmptyString_U_dfaStringOfChar = dfa_ver2.union(dfaEmptyString, dfaStringOfChar)
+print("*******************")
+print("dfaEmptyString_U_dfaStringOfChar")
+# Pass
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted(" "))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("c"))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("  "))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("cc"))
+
+# Fail
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted(" c"))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("c "))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("0  "))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("1  "))
+
+# dfaEmptyString union dfaEven
+dfaEmptyString_U_dfaEven = dfa_ver2.union(dfaEmptyString, dfaEven)
+print("*******************")
+print("dfaEmptyString_U_dfaEven")
+# Pass
+print(dfaEmptyString_U_dfaEven.isStringAccepted(" "))
+print(dfaEmptyString_U_dfaEven.isStringAccepted("01"))
+print(dfaEmptyString_U_dfaEven.isStringAccepted("0101"))
+print(dfaEmptyString_U_dfaEven.isStringAccepted("    "))
+
+# Fail
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("0"))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("c1"))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("0  "))
+print(dfaEmptyString_U_dfaStringOfChar.isStringAccepted("1  "))
+
+# dfaEven union dfaOdd
+# accept anything
+dfaEvenUdfaOdd = dfa_ver2.union(dfaEven, dfaOdd)
+print("*******************")
+print("dfaEvenUdfaOdd")
+# Pass
+print(dfaEvenUdfaOdd.isStringAccepted(""))
+print(dfaEvenUdfaOdd.isStringAccepted("0"))
+print(dfaEvenUdfaOdd.isStringAccepted("01"))
+print(dfaEvenUdfaOdd.isStringAccepted("010 "))
+
+# dfaEven union dfaM1
+dfaEvenUdfaM1 = dfa_ver2.union(dfaEven, dfaM1)
+print("*******************")
+print("dfaEvenUdfaM1")
+# Pass
+print(dfaM1.isStringAccepted("1"))
+print(dfaM1.isStringAccepted("11"))
+print(dfaM1.isStringAccepted("10111"))
+print(dfaM1.isStringAccepted("1111"))
+
+# Fail
+print(dfaM1.isStringAccepted("0"))
+print(dfaM1.isStringAccepted("000"))
+print(dfaM1.isStringAccepted("100"))
+print(dfaM1.isStringAccepted("010"))
+
+# dfaEven union dfaM4
+dfaEvenUdfaM4 = dfa_ver2.union(dfaEven, dfaM4)
+print("*******************")
+print("dfaEvenUdfaM4")
+# Pass
+#q
+print(dfaEvenUdfaM4.isStringAccepted("a"))
+print(dfaEvenUdfaM4.isStringAccepted("aa"))
+print(dfaEvenUdfaM4.isStringAccepted("aba"))
+print(dfaEvenUdfaM4.isStringAccepted("abaa"))
+#r
+print(dfaEvenUdfaM4.isStringAccepted("b"))
+print(dfaEvenUdfaM4.isStringAccepted("bb"))
+print(dfaEvenUdfaM4.isStringAccepted("bab"))
+print(dfaEvenUdfaM4.isStringAccepted("babb"))
+
+print(dfaEvenUdfaM4.isStringAccepted("00"))
+print(dfaEvenUdfaM4.isStringAccepted("0000"))
+print(dfaEvenUdfaM4.isStringAccepted("000000"))
+print(dfaEvenUdfaM4.isStringAccepted("00000000"))
+
+# Fail
+#q
+print(dfaEvenUdfaM4.isStringAccepted("abb"))
+print(dfaEvenUdfaM4.isStringAccepted("abb"))
+print(dfaEvenUdfaM4.isStringAccepted("ababb"))
+print(dfaEvenUdfaM4.isStringAccepted("ababbab"))
+#r
+print(dfaEvenUdfaM4.isStringAccepted("baa"))
+print(dfaEvenUdfaM4.isStringAccepted("baa"))
+print(dfaEvenUdfaM4.isStringAccepted("babaa"))
+print(dfaEvenUdfaM4.isStringAccepted("babaa"))
+
+# dfaM4 union dfaStrings001
+dfaM4UdfaStrings001 = dfa_ver2.union(dfaM4, dfaStrings001)
+print("*******************")
+print("dfaM4UdfaStrings001")
+# Pass
+#q
+print(dfaM4UdfaStrings001.isStringAccepted("a"))
+print(dfaM4UdfaStrings001.isStringAccepted("aa"))
+print(dfaM4UdfaStrings001.isStringAccepted("aba"))
+print(dfaM4UdfaStrings001.isStringAccepted("abaa"))
+#r
+print(dfaM4UdfaStrings001.isStringAccepted("b"))
+print(dfaM4UdfaStrings001.isStringAccepted("bb"))
+print(dfaM4UdfaStrings001.isStringAccepted("bab"))
+print(dfaM4UdfaStrings001.isStringAccepted("babb"))
+
+
+print(dfaM4UdfaStrings001.isStringAccepted("001"))
+print(dfaM4UdfaStrings001.isStringAccepted("0010a"))
+print(dfaM4UdfaStrings001.isStringAccepted("000100"))
+print(dfaM4UdfaStrings001.isStringAccepted("00000001"))
+
+# Fail
+#q
+print(dfaM4UdfaStrings001.isStringAccepted("abb"))
+print(dfaM4UdfaStrings001.isStringAccepted("abb"))
+print(dfaM4UdfaStrings001.isStringAccepted("ababb"))
+print(dfaM4UdfaStrings001.isStringAccepted("ababbab"))
+#r
+print(dfaM4UdfaStrings001.isStringAccepted("baa"))
+print(dfaM4UdfaStrings001.isStringAccepted("baa"))
+print(dfaM4UdfaStrings001.isStringAccepted("babaa"))
+print(dfaM4UdfaStrings001.isStringAccepted("babaa"))
+
+print(dfaM4UdfaStrings001.isStringAccepted("01"))
+print(dfaM4UdfaStrings001.isStringAccepted("01033"))
+
+#dfaStrings001 union dfaEmptyString
+dfaStrings001UdfaEmptyString = dfa_ver2.union(dfaStrings001, dfaEmptyString)
+print("*******************")
+print("dfaStrings001UdfaEmptyString")
+# Pass
+print(dfaStrings001UdfaEmptyString.isStringAccepted("001"))
+print(dfaStrings001UdfaEmptyString.isStringAccepted("110001"))
+print(dfaStrings001UdfaEmptyString.isStringAccepted(" "))
+print(dfaStrings001UdfaEmptyString.isStringAccepted("    "))
+# Fail
+print(dfaStrings001UdfaEmptyString.isStringAccepted(" 1"))
+print(dfaStrings001UdfaEmptyString.isStringAccepted(" 00"))
+print(dfaStrings001UdfaEmptyString.isStringAccepted(" 1110 "))
+print(dfaStrings001UdfaEmptyString.isStringAccepted("   d "))
+
+# dfaStrings001 union dfaStringOfChar
+dfaStrings001UdfaStringOfChar = dfa_ver2.union(dfaStrings001, dfaStringOfChar)
+print("*******************")
+print("dfaStrings001UdfaStringOfChar")
+# Pass
+print(dfaStrings001UdfaStringOfChar.isStringAccepted("001"))
+print(dfaStrings001UdfaStringOfChar.isStringAccepted("110001"))
+print(dfaStrings001UdfaStringOfChar.isStringAccepted("cc"))
+print(dfaStrings001UdfaStringOfChar.isStringAccepted("cccc"))
+# Fail
+print(dfaStrings001UdfaStringOfChar.isStringAccepted(" c"))
+print(dfaStrings001UdfaStringOfChar.isStringAccepted(" 00"))
+print(dfaStrings001UdfaStringOfChar.isStringAccepted(" c110 "))
+print(dfaStrings001UdfaStringOfChar.isStringAccepted(" s  d "))

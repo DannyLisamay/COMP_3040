@@ -247,10 +247,17 @@ def DFA_Strings001():
         lambda qi: qi == "q001"
     )
 
-
 #*******TASK #14************
 # Takes two DFAs and returns a third DFA that accepts a string if either argument accepts it.
-#
-def union(dfa1, dfa2):
-    states = lambda qi: dfa1.statesFunction(qi[0]) && dfa2.statesFunction(qi[1])
-    alpha = [dfa1.alpha, dfa2.alpha]
+def union(Qa, Qb):
+    # Elemnets of Qa paired with Elements of Qb
+    statesFunction = lambda qi: Qa.statesFunction(qi[0]) and Qb.statesFunction(qi[1])
+    # alphabet pair Qa, Qb
+    alpha = [Qa.alpha, Qb.alpha]
+    # start state pair Qa, Qb
+    startState = [Qa.startState, Qb.startState]
+    # transition return pair Qa.transitionFunction(qi[0]) and Qb.transitionFunction(qi[1]
+    transitionFunction = lambda qi, c: [Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)]
+    # acceptFunction returns true if either Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1]) is true
+    acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1])
+    return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)
