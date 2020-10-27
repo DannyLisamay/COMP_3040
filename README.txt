@@ -82,3 +82,4 @@ Decide on a data type to represent alphabets and characters.
   Starting Task 17, test cases for task 16.
   Task 16, 17 Completed
   Task 18, 19 Completed
+    Had to add to getAcceptedString, added tuples.

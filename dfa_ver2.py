@@ -30,6 +30,7 @@ class DFA:
         return traceList
 
     #*******TASK #12************
+    # FGiven a DFA and a string, returns the trace of configurations it visits.
     # Like a BFS?
     def getAcceptedString(self):
         currentState =self.startState
@@ -62,8 +63,9 @@ class DFA:
         return False
 
     #*******TASK #13************
-    # return complement DFA
+    # Takes one DFA and returns a DFA that accepts that the given one does not (and vice versa).
     # uses lambda to return complment of acceptFunction
+    # I should have created this outside of DFA class. But it works this way.
     def complement(self):
         return DFA(self.statesFunction, self.alpha, self.startState, self.transitionFunction, lambda qi: not self.acceptFunction(qi))
 
@@ -106,6 +108,10 @@ def intersection(Qa, Qb):
 def subset(Qa, Qb):
     return (intersection(Qb.complement(), Qa)).getAcceptedString() == False
 
+#*******TASK #20*************
+#function which takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y and vice versa.
+def equality(Qa, Qb):
+    return subset(Qa) and subset(Qb)
 
 ####################################
 #DFA
