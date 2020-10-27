@@ -661,10 +661,11 @@ print(dfaStrings001UdfaStringOfChar.isStringAccepted(" c110 "))
 print(dfaStrings001UdfaStringOfChar.isStringAccepted(" s  d "))
 """
 
+
 #*******TASK #16 Test************
 #*******TASK #17 ************
 # Intersection Tests
-
+"""
 # dfaEven intersection dfaM1
 dfaEvenNdfaM1 = dfa_ver2.intersection(dfaEven, dfaM1)
 print("*******************")
@@ -785,3 +786,62 @@ print(dfaOddNdfaStrings001.isStringAccepted("0010"))
 print(dfaOddNdfaStrings001.isStringAccepted("01101"))
 print(dfaOddNdfaStrings001.isStringAccepted("010010"))
 print(dfaOddNdfaStrings001.isStringAccepted("11011"))
+"""
+
+#*******TASK #18 Test************
+#*******TASK #19 ************
+# subset Tests
+# DFA that only accpets 0
+dfaStringOfZero = dfa_ver2.DFA_StringOfChar("0")
+# DFA that only accpets 1
+dfaStringOfOnes = dfa_ver2.DFA_StringOfChar("1")
+# DFA accepts 0 or 1
+dfaZeroOrOnes = dfa_ver2.DFA_ZeroOrOnes()
+
+#pass
+print("***Subset PASS***")
+# 0 or 1 sub set of 0 or 1
+dfaZeroOrOnesSdfadfaZeroOrOnes = dfa_ver2.subset(dfaZeroOrOnes, dfaZeroOrOnes)
+print(dfaZeroOrOnesSdfadfaZeroOrOnes)
+# 1 is subset of 0 or 1
+dfaStringOfOnesSdfaZeroOrOnes = dfa_ver2.subset(dfaZeroOrOnes, dfaStringOfOnes)
+print(dfaStringOfOnesSdfaZeroOrOnes)
+# 0 is subset of 0 or 1
+dfaStringOfZeroSdfaZeroOrOnes = dfa_ver2.subset(dfaZeroOrOnes, dfaStringOfZero)
+print(dfaStringOfZeroSdfaZeroOrOnes)
+# 0 is a sub set of 001
+dfaStringOfZeroSdfaStrings001 = dfa_ver2.subset(dfaStrings001, dfaStringOfZero)
+print(dfaStringOfZeroSdfaStrings001)
+# 0 is a sub set of 001
+dfaStringOfOnesSdfaStrings001 = dfa_ver2.subset(dfaStrings001, dfaStringOfOnes)
+print(dfaStringOfZeroSdfaStrings001)
+# 01 subset of 001
+dfaZeroOrOnesSdfaStrings001 = dfa_ver2.subset(dfaStrings001, dfaZeroOrOnes)
+print(dfaZeroOrOnesSdfaStrings001)
+# m2 sub set m1
+dfaM1SdfaM2 = dfa_ver2.subset(dfaM1, dfaM2)
+print(dfaM1SdfaM2)
+# m3 sub set m2
+dfaM2SdfaM3 = dfa_ver2.subset(dfaM2, dfaM3)
+print(dfaM1SdfaM2)
+
+#Fail
+print("***Subset FAIL***")
+# Even subset Odd
+dfaEvenSdfaOdd = dfa_ver2.subset(dfaEven, dfaOdd)
+print(dfaEvenSdfaOdd)
+# Even subset M4
+dfaEvenSdfaM4 = dfa_ver2.subset(dfaEven, dfaM4)
+print(dfaEvenSdfaM4)
+# Even subset 001
+dfaEvenSdfaStrings001 = dfa_ver2.subset(dfaEven, dfaStrings001)
+print(dfaEvenSdfaStrings001)
+# M1 subset M4
+dfaM1SdfaM4 = dfa_ver2.subset(dfaM1, dfaM4)
+print(dfaEvenSdfaM4)
+# M3 subset M4
+dfaM3SdfaM4 = dfa_ver2.subset(dfaM3, dfaM4)
+print(dfaEvenSdfaM4)
+# 001 subset M4
+dfaStrings001SdfaM4 = dfa_ver2.subset(dfaM3, dfaM4)
+print(dfaEvenSdfaM4)

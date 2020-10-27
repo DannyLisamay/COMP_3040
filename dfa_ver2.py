@@ -36,7 +36,7 @@ class DFA:
         # String list
         string = []
         # Visted list dictionary
-        visted = { currentState : True}
+        visted = { tuple(currentState) : True}
         # States that are going to be visted.
         queue = [currentState]
         # While queue not empty
@@ -51,9 +51,9 @@ class DFA:
                 # next state set to next state in transition according to givin charater
                 nextState = self.transitionFunction(currentState, c)
                 # if next state has yet to be visited
-                if not visted.get(nextState):
+                if not visted.get(tuple(nextState)):
                     # in visted dictionary set to True
-                    visted[nextState] = True
+                    visted[tuple(nextState)] = True
                     # add next state to queue
                     queue.append(nextState)
                     # add charater to string
@@ -99,15 +99,24 @@ def intersection(Qa, Qb):
     acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) and Qb.acceptFunction(qi[1])
     return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)
 
+#*******TASK #18*************
+# Takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y.
+# Returns if every string in Qa is also accepted by Qb
+# returns True if empty
+def subset(Qa, Qb):
+    return (intersection(Qb.complement(), Qa)).getAcceptedString() == False
+
+
+####################################
 #DFA
 #** dfa accepts no strings
 # Doesn't accept anything always return false.
 def DFA_NoStrings():
     return DFA(
-        lambda x: x == 0,
+        lambda x: x == "0",
         ["0", "1"],
-        0,
-        lambda qi, c: 0,
+        "0",
+        lambda qi, c: "0",
         lambda qi: False,
     )
 
@@ -194,7 +203,7 @@ def DFA_M1():
         lambda qi: qi == "q1"
     )
 
-# dfa textbook example figure 1.7 state diagram if M2
+#** dfa textbook example figure 1.7 state diagram if M2
 def DFA_M2():
     def transitionFunction(qi, c):
         if c == "1":
@@ -210,7 +219,7 @@ def DFA_M2():
         lambda qi: qi == "q1"
     )
 
-# dfa textbook example figure 1.9 state diagram if M3
+#** dfa textbook example figure 1.9 state diagram if M3
 def DFA_M3():
     def transitionFunction(qi, c):
         if c == "1":
@@ -226,7 +235,7 @@ def DFA_M3():
         lambda qi: qi == "q0"
     )
 
-# dfa textbook example figure 1.12 state diagram if M4
+#** dfa textbook example figure 1.12 state diagram if M4
 def DFA_M4():
     def transitionFunction(qi, c):
         if c == "a":
@@ -249,7 +258,7 @@ def DFA_M4():
         lambda qi: qi == "q1" or qi == "r1"
     )
 
-#dfa textbook example figure 1.22 Accepts strings contaiing 001
+#** dfa textbook example figure 1.22 Accepts strings contaiing 001
 def DFA_Strings001():
     def transitionFunction(qi, c):
         if qi == "q":
@@ -276,4 +285,17 @@ def DFA_Strings001():
         "q",
         transitionFunction,
         lambda qi: qi == "q001"
+    )
+
+#** dfa accepts 0 or 1
+def DFA_ZeroOrOnes():
+    def transitionFunction(qi, c):
+        if qi == ("q0" or qi == "q1") and (c == "0" or c == "1"):
+            return "q1"
+    return DFA(
+        lambda qi: qi == "q0" or qi == "q1" or qi == "q2",
+        ["0", "1"],
+        "0",
+        transitionFunction,
+        lambda qi: qi == "1"
     )

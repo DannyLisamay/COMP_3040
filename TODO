@@ -1,5 +1,3 @@
-(Subset) Write a function which takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y.
-Write a dozen tests for your subset function.
 (Equality) Write a function which takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y and vice versa.
 Write a dozen tests for your equality function.
 Verify your complement, union, and intersect functions using the equality function.

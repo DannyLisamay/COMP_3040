@@ -80,4 +80,5 @@ Decide on a data type to represent alphabets and characters.
   Task 14, 15 Completed... 2am.
   Completed Task 16.
   Starting Task 17, test cases for task 16.
-  Task 16, 17  Completed.
+  Task 16, 17 Completed
+  Task 18, 19 Completed
