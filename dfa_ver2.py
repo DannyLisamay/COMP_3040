@@ -29,6 +29,45 @@ class DFA:
             traceList.append(currentState)
         return traceList
 
+    #*******TASK #12************
+    # Like a BFS?
+    def getAcceptedString(self):
+        currentState =self.startState
+        # String list
+        string = []
+        # Visted list dictionary
+        visted = { currentState : True}
+        # States that are going to be visted.
+        queue = [currentState]
+        # While queue not empty
+        while queue:
+            # current state is set to whate in the queue
+            currentState = queue.pop(0)
+            # checks if were in accepted state return string
+            if self.acceptFunction(currentState):
+                return string
+            # for each charater in the alphabet
+            for c in self.alpha:
+                # next state set to next state in transition according to givin charater
+                nextState = self.transitionFunction(currentState, c)
+                # if next state has yet to be visited
+                if not visted.get(nextState):
+                    # in visted dictionary set to True
+                    visted[nextState] = True
+                    # add next state to queue
+                    queue.append(nextState)
+                    # add charater to string
+                    string.append(c)
+        # Didn't find accepted state
+        return False
+
+
+    #*******TASK #13************
+    # return complement DFA
+    # uses lambda to return complment of acceptFunction
+    def complement(self):
+        return DFA(self.statesFunction, self.alpha, self.startState, self.transitionFunction, lambda qi: not self.acceptFunction(qi))
+
 #DFA
 #** dfa accepts no strings
 # Doesn't accept anything always return false.
@@ -207,3 +246,11 @@ def DFA_Strings001():
         transitionFunction,
         lambda qi: qi == "q001"
     )
+
+
+#*******TASK #14************
+# Takes two DFAs and returns a third DFA that accepts a string if either argument accepts it.
+#
+def union(dfa1, dfa2):
+    states = lambda qi: dfa1.statesFunction(qi[0]) && dfa2.statesFunction(qi[1])
+    alpha = [dfa1.alpha, dfa2.alpha]

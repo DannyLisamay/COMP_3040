@@ -70,3 +70,8 @@ Decide on a data type to represent alphabets and characters.
   Rewriting DFAs..
   Task 11-13 Not done yet.
   Wish me luck.
+
+10/26
+  Now with new DFA made with membership functions
+  Done task 11, 12, 13.
+  Task 12 was extremely difficult for me 
