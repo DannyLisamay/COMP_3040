@@ -30,7 +30,7 @@ class DFA:
         return traceList
 
     #*******TASK #12************
-    # FGiven a DFA and a string, returns the trace of configurations it visits.
+    # Given a DFA and a string, returns the trace of configurations it visits.
     # Like a BFS?
     def getAcceptedString(self):
         currentState =self.startState
@@ -73,13 +73,13 @@ class DFA:
 # Takes two DFAs and returns a third DFA that accepts a string if either argument accepts it.
 def union(Qa, Qb):
     # Elemnets of Qa paired with Elements of Qb
-    statesFunction = lambda qi: Qa.statesFunction(qi[0]) and Qb.statesFunction(qi[1])
+    statesFunction = lambda qi: Qa.statesFunction(qi[0]) or Qb.statesFunction(qi[1])
     # alphabet pair Qa, Qb
-    alpha = [Qa.alpha, Qb.alpha]
+    alpha = tuple([Qa.alpha, Qb.alpha])
     # start state pair Qa, Qb
-    startState = [Qa.startState, Qb.startState]
+    startState = tuple([Qa.startState, Qb.startState])
     # transition return pair Qa.transitionFunction(qi[0]) and Qb.transitionFunction(qi[1]
-    transitionFunction = lambda qi, c: [Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)]
+    transitionFunction = lambda qi, c: tuple([Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)])
     # acceptFunction returns true if either Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1]) is true
     acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) or Qb.acceptFunction(qi[1])
     return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)
@@ -92,11 +92,11 @@ def intersection(Qa, Qb):
     # Elemnets of Qa paired with Elements of Qb
     statesFunction = lambda qi: Qa.statesFunction(qi[0]) and Qb.statesFunction(qi[1])
     # alphabet pair Qa, Qb
-    alpha = [Qa.alpha, Qb.alpha]
+    alpha = tuple([Qa.alpha, Qb.alpha])
     # start state pair Qa, Qb
-    startState = [Qa.startState, Qb.startState]
+    startState = tuple([Qa.startState, Qb.startState])
     # transition return pair Qa.transitionFunction(qi[0]) and Qb.transitionFunction(qi[1]
-    transitionFunction = lambda qi, c: [Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)]
+    transitionFunction = lambda qi, c: tuple([Qa.transitionFunction(qi[0], c), Qb.transitionFunction(qi[1], c)])
     # acceptFunction returns true for both Qa.acceptFunction(qi[0]) and Qb.acceptFunction(qi[1]) is true
     acceptFunction = lambda qi: Qa.acceptFunction(qi[0]) and Qb.acceptFunction(qi[1])
     return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction)
@@ -111,7 +111,7 @@ def subset(Qa, Qb):
 #*******TASK #20*************
 #function which takes two DFAs (X and Y) and returns whether every string accepted by X is also accepted by Y and vice versa.
 def equality(Qa, Qb):
-    return subset(Qa) and subset(Qb)
+    return subset(Qa, Qb) and subset(Qb, Qa)
 
 ####################################
 #DFA

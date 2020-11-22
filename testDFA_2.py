@@ -788,6 +788,7 @@ print(dfaOddNdfaStrings001.isStringAccepted("010010"))
 print(dfaOddNdfaStrings001.isStringAccepted("11011"))
 """
 
+"""
 #*******TASK #18 Test************
 #*******TASK #19 ************
 # subset Tests
@@ -845,3 +846,96 @@ print(dfaEvenSdfaM4)
 # 001 subset M4
 dfaStrings001SdfaM4 = dfa_ver2.subset(dfaM3, dfaM4)
 print(dfaEvenSdfaM4)
+"""
+
+"""
+#*******TASK #20 ************
+#*******TASK #21 ************
+# Test for equality function.
+
+complement_dfaEven = dfaEven.complement()
+complement_dfaOdd = dfaOdd.complement()
+complement_dfaM1 = dfaM1.complement()
+complement_dfaM2 = dfaM2.complement()
+complement_dfaM3 = dfaM3.complement()
+
+#Pass
+print("***Equality PASS***")
+print(dfa_ver2.equality(dfaEven, complement_dfaOdd))
+print(dfa_ver2.equality(dfaOdd, complement_dfaEven))
+print(dfa_ver2.equality(dfaM1, complement_dfaM1.complement()))
+print(dfa_ver2.equality(dfaM2, complement_dfaM3))
+print(dfa_ver2.equality(dfaM3, complement_dfaM2))
+
+#Fail
+print("***Equality Fail***")
+print(dfa_ver2.equality(dfaEven, complement_dfaEven))
+print(dfa_ver2.equality(dfaOdd, complement_dfaOdd))
+print(dfa_ver2.equality(dfaM1, complement_dfaM1))
+print(dfa_ver2.equality(dfaM2, complement_dfaM2))
+print(dfa_ver2.equality(dfaM3, complement_dfaM3))
+"""
+
+"""
+#*******TASK #22 ************
+# Verify your complement, union, and intersect functions using the equality function.
+complement_dfaEven = dfaEven.complement()
+complement_dfaOdd = dfaOdd.complement()
+complement_dfaM1 = dfaM1.complement()
+complement_dfaM2 = dfaM2.complement()
+complement_dfaM3 = dfaM3.complement()
+
+dfaEvenUdfaOdd = dfa_ver2.union(dfaEven, dfaOdd)
+dfaAnyString = dfaNoStrings.complement()
+dfaEmptyString_U_dfaEven = dfa_ver2.union(dfaEmptyString, dfaEven)
+dfaEmptyString_U_dfaOdd = dfa_ver2.union(dfaEmptyString, dfaOdd)
+
+dfaEvenNOdd = dfa_ver2.intersection(dfaEven,dfaOdd)
+dfaOddNdfaM2 = dfa_ver2.intersection(dfaOdd, dfaM2)
+dfaOddNdfaComplment_M2 = dfa_ver2.intersection(dfaOdd, dfaM2.complement())
+dfaOddNdfaM3 = dfa_ver2.intersection(dfaOdd, dfaM3)
+dfaOddNdfaComplment_M3 = dfa_ver2.intersection(dfaOdd, dfaM3.complement())
+
+#Pass
+print("***Equality PASS***")
+# complement
+print("***Complement***")
+print(dfa_ver2.equality(dfaEven, complement_dfaOdd))
+print(dfa_ver2.equality(dfaOdd, complement_dfaEven))
+print(dfa_ver2.equality(dfaM1, complement_dfaM1.complement()))
+print(dfa_ver2.equality(dfaM2, complement_dfaM3))
+print(dfa_ver2.equality(dfaM3, complement_dfaM2))
+
+# union
+print("***Union***")
+print(dfa_ver2.equality(dfaEvenUdfaOdd, dfaAnyString))
+print(dfa_ver2.equality(dfaEmptyString_U_dfaEven, dfaEmptyString_U_dfaOdd.complement()))
+print(dfa_ver2.equality(dfaEmptyString_U_dfaOdd, dfaEmptyString_U_dfaEven.complement()))
+
+print("***Intersection***")
+print(dfa_ver2.equality(dfaEvenNOdd, dfaNoStrings))
+print(dfa_ver2.equality(dfaOddNdfaM2, dfaOddNdfaComplment_M3))
+print(dfa_ver2.equality(dfaOddNdfaM3, dfaOddNdfaComplment_M2))
+
+#Fail
+print("\n***Equality Fail***")
+# complement
+print("***Complement***")
+print(dfa_ver2.equality(dfaEven, complement_dfaEven))
+print(dfa_ver2.equality(dfaOdd, complement_dfaOdd))
+print(dfa_ver2.equality(dfaM1, complement_dfaM1))
+print(dfa_ver2.equality(dfaM2, complement_dfaM2))
+print(dfa_ver2.equality(dfaM3, complement_dfaM3))
+
+# union
+print("***Union***")
+print(dfa_ver2.equality(dfaEvenUdfaOdd, dfaNoStrings))
+print(dfa_ver2.equality(dfaEmptyString_U_dfaEven, dfaEmptyString_U_dfaOdd))
+print(dfa_ver2.equality(dfaEmptyString_U_dfaOdd, dfaEmptyString_U_dfaEven))
+
+# intersection
+print("***Intersection***")
+print(dfa_ver2.equality(dfaEvenNOdd, dfaNoStrings.complement()))
+print(dfa_ver2.equality(dfaOddNdfaM2, dfaOddNdfaComplment_M2))
+print(dfa_ver2.equality(dfaOddNdfaM3, dfaOddNdfaComplment_M3))
+"""
