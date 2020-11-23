@@ -1,14 +1,21 @@
 import dfa_ver2
 
-# TASK 23
+#*******TASK #23 ************
 # Define a data type to represent NFAs.
 # epsilon is "None"
+class NFA:
+    def __init__(self, statesFunction, alphabet, startState, transitionFunction, acceptFunction):
+        self.statesFunction = statesFunction
+        self.alpha = alphabet
+        self.startState = startState
+        self.transitionFunction = transitionFunction
+        self.acceptFunction = acceptFunction
 
-# Task 24
+
+#*******TASK #24 ************
 # Write a (trivial) function that converts DFAs into NFAs.
 # Pretty much what was gone over in class.
 # My delta is represented with a list, casted to tuple to work with my getAcceptedString function.
-
 def dfa2Nfa(dfa):
     def transitionFunction(qi, c):
         if c == None:
@@ -17,14 +24,26 @@ def dfa2Nfa(dfa):
             return tuple([dfa.transitionFunction])
     return DFA(dfa.statesFunction, dfa.alpha, dfa.startState, transitionFunction, dfa.acceptFunction)
 
-# Task 25
+
+#*******TASK #27 ************
+#Write a function that given an NFA, a string, a trace, and a boolean,
+#determines if the trace is a valid execution of the NFA and accepts results in the given boolean.
+def oracle(nfa, trace, result):
+    oracle_(nfa, nfa.startState, trace, res)
+
+#Helper function
+def oracle_(nfa, qi, trace, result):
+    if not trace:
+
+
+#*******TASK #25 ************
 # Write a example NFAs.
 # casted to tuple to work with my getAcceptedString function. (was an issue with DFAs)
 
 # NFA NoStrings
 # Doesn't accept anything always return false.
 def NFA_NoStrings():
-    return DFA(
+    return NFA(
         lambda x: x == "0",
         ["0", "1"],
         "0",
@@ -43,7 +62,7 @@ def NFA_Even_Length():
         else:
             return tuple(["q0"])
 
-    return DFA(
+    return NFA(
         lambda qi: qi == "q0" or qi == "q1",
         ["0", "1"],
         "q0",
@@ -63,7 +82,7 @@ def NFA_Odd_Length():
         else:
             return tuple(["q0"])
 
-    return DFA(
+    return NFA(
         lambda qi: qi == "q0" or qi == "q1",
         ["0", "1"],
         "q0",
@@ -84,7 +103,7 @@ def NFA_N1():
         elif qi == "q3" and (c == "0" or c == "1"):
             return tuple(["q3"])
 
-    return dfa_ver2.DFA(
+    return NFA(
         lambda qi: qi == "q0" or qi == "q1" or qi == "q2" or qi == "q3",
         ["0", "1"],
         tuple(["q0"]),
@@ -104,7 +123,7 @@ def NFA_N2():
         elif qi == "q2" and (c == "0" or c == "1"):
             return tuple(["q3"])
 
-    return dfa_ver2.DFA(
+    return NFA(
         lambda qi: qi == "q0" or qi == "q1" or qi == "q2" or qi == "q3",
         ["0", "1"],
         tuple(["q0"]),
@@ -126,7 +145,7 @@ def NFA_N4():
         elif qi == "q2" and c == "a":
             return tuple(["q0"])
 
-    return dfa_ver2.DFA(
+    return NFA(
         lambda qi: qi == "q0" or qi == "q1" or qi == "q2",
         ["a", "b"],
         tuple(["q0"]),
@@ -153,7 +172,7 @@ def NFA_ThreeFromEndIsOne():
             # return currentState
             elif qi == "3":
                 return tuple([self.startState])
-    return dfa_ver2.DFA(
+    return NFA(
         lambda qi: qi == "0" or qi == "1" or qi == "2" or qi == "3",
         ["0", "1", "2", "3"],
         "0",
