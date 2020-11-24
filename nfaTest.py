@@ -11,6 +11,7 @@ NFA_N2 = nfa.NFA_N2()
 NFA_N4 = nfa.NFA_N4()
 NFA_ThreeFromEndIsOne = nfa.NFA_ThreeFromEndIsOne()
 NFA_HasEps = nfa.NFA_HasEps()
+NFA_OneBB = nfa.NFA_OneBB()
 
 #*******TASK #26 ************
 #nfaTrace(NFA_Even, [], True, True)
@@ -75,6 +76,13 @@ print(nfa.oracle(NFA_N4, [["q1", "b"]], False))
 print(nfa.oracle(NFA_N4, [["q1", "b"], ["q2", "a"]], False))
 print(nfa.oracle(NFA_N4, [["q1", "b"], ["q1", "a"], ["q1", "a"]], False))
 
+#NFA ThreeFromEndIsOne
+print("NFA_ThreeFromEndIsOne")
+print(nfa.oracle(NFA_ThreeFromEndIsOne, [["0", "0"], ["0", "1"], ["0", "1"], ["0", "0"], ["0", "1"]], False))
+print(nfa.oracle(NFA_ThreeFromEndIsOne, [["0", "0"], ["0", "1"], ["0", "1"], ["0", "0"]], False))
+print(nfa.oracle(NFA_ThreeFromEndIsOne, [["0", "0"], ["1", "1"], ["2", "1"], ["3", "1"]], True))
+print(nfa.oracle(NFA_ThreeFromEndIsOne, [["0", "0"], ["0", "1"], ["1", "1"], ["2", "0"], ["3", "1"]], True))
+
 #NFA HasEpsilon
 print(nfa.oracle(NFA_HasEps, [] , False))
 print(nfa.oracle(NFA_HasEps, [["1"]] , True))
@@ -82,3 +90,12 @@ print(nfa.oracle(NFA_HasEps, [["2"]] , False))
 print(nfa.oracle(NFA_HasEps, [["0", "0"]] , False))
 print(nfa.oracle(NFA_HasEps, [["0", "0"], ["1"]] , True))
 """
+
+#*******TASK #28 ************
+# Define a data type to represent trace trees.
+#*******TASK #29 ************
+#For each example NFA, write a half-dozen trace trees of their behavior.
+#N1
+#print(nfa.forking(NFA_OneBB, []))
+#print(nfa.forking(NFA_OneBB, ["0"]))
+print(nfa.forking(NFA_N1, ["1"]))
