@@ -76,7 +76,7 @@ def forking_(nfa, qi ,s):
     return [qi, children]
 
 """
-Not working atm.
+Not working ATM...
 #*******TASK #36 ************
 # Write a function that takes an NFA and returns a new NFA that accepts a string
 # if it can be broken into N pieces, each accepted by the argument.
@@ -95,7 +95,7 @@ def kleeneStar(x):
 
 
 """
-Not working atm.
+Maybe Working?
 #*******TASK #38 ************
 # Write a function which converts an NFA into a DFA that accepts the same language.
 def nfa2dfa(nfa):
@@ -142,7 +142,6 @@ def nfa2dfa(nfa):
         return False
     return dfa_ver2.DFA(statesFunction, nfa.alpha, startState, transitionFunction, acceptFunction)
 """
-
 
 #*******TASK #25 ************
 # Write a example NFAs.
