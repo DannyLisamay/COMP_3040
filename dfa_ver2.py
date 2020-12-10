@@ -26,7 +26,7 @@ class DFA:
         for x in s:
             if currentState != None:
                 currentState = self.transitionFunction(currentState, x)
-            traceList.append(currentState)
+            traceList.append(list(currentState))
         return traceList
 
     #*******TASK #12************

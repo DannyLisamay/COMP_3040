@@ -1,4 +1,5 @@
 import dfa_ver2
+from itertools import chain
 
 #*******TASK #23 ************
 # Define a data type to represent NFAs.
@@ -22,7 +23,7 @@ def dfa2Nfa(dfa):
         return [dfa.transitionFunction]
     def epsilonFunction(qi):
         return []
-    return DFA(dfa.statesFunction, dfa.alpha, dfa.startState, transitionFunction, dfa.acceptFunction, epsilonFunction)
+    return NFA(dfa.statesFunction, dfa.alpha, dfa.startState, transitionFunction, dfa.acceptFunction, epsilonFunction)
 
 
 #*******TASK #27 ************
@@ -33,22 +34,26 @@ def oracle(nfa, trace, result):
 
 #Helper function
 def oracle_(nfa, qi, trace, result):
-    # Check if trace is empty
+    # Check if trace is empty, returns if in acceptFunction
     if not trace:
         return result == nfa.acceptFunction(qi)
     # te is first element tp is rest
     [te, *tp] = trace
+    # Tr
     def qjs():
         # check if te is epsilon
         if len(te) == 1:
+            # epsilon transition function
             return nfa.epsilonFunction(qi)
         else:
+            # transitionFunction
             return nfa.transitionFunction(qi, te[1])
-    # Recursion
+    # Recursivly go through each element in trace.
     return te[0] in qjs() and oracle_(nfa, te[0], tp, result)
 
 #*******TASK #30 ************
 # Write a function that given an NFA and a string, returns a tree of all possible traces.
+# Not working correctly.
 def forking(nfa, s):
     return forking_(nfa, nfa.startState ,s)
 
@@ -70,6 +75,75 @@ def forking_(nfa, qi ,s):
             cont(sp)
     return [qi, children]
 
+"""
+Not working atm.
+#*******TASK #36 ************
+# Write a function that takes an NFA and returns a new NFA that accepts a string
+# if it can be broken into N pieces, each accepted by the argument.
+def kleeneStar(x):
+    statesFunction = lambda qi: qi is 0 or x.statesFunction(qi)
+    alpha = self.alpha
+    startState = 0
+    def transitionFunction(qi ,c):
+         if qi is 0:
+             return []
+    acceptFunction = lambda qi: qi is 0
+    def epsilonFunction(qi):
+        return qi
+    return NFA(statesFunction, alpha, startState, transitionFunction, acceptFunction, epsilonFunction)
+"""
+
+
+"""
+Not working atm.
+#*******TASK #38 ************
+# Write a function which converts an NFA into a DFA that accepts the same language.
+def nfa2dfa(nfa):
+    #E function follows all episoln transitions
+    def E(qd):
+        qdp = qd
+        addedAny = True
+        # Seen list set all to false
+        seen = {}
+        for qn in qdp:
+            seen = {qn : False}
+        while(addedAny):
+            addedAny = False
+            # Itterate over qdp
+            for qn in qdp:
+                # Itterate over each element return by epsilonFunction
+                for qne in nfa.epsilonFunction(qn):
+                    if not (seen[qne]):
+                        seen[qne] = True
+                        qdp.append(qne)
+                        addedAny = True
+        return qdp
+    # statesFunction checks if all elements given array is accepted by nfa statesFunction
+    def statesFunction(qd):
+        temp = False
+        for qde in nfa.statesFunction(qd):
+            temp = qde
+        return temp
+    # startState is the set of nfa startState
+    startState = E([ nfa.startState ])
+    # transitionFunction
+    def transitionFunction(qd, c):
+        # Itterate transitionFunction through all element for a flatten list of list.
+        return E(map(lambda qn: nfa.transitionFunction(qn, c), (qd)))
+    # flatten list of list used for transitionFunction
+    def flatten(listOfLists):
+        #rint(list(chain.from_iterable(listOfLists)))
+        return list(chain.from_iterable(listOfLists))
+    # acceptFunction checks if any elements given array is accepted by nfa statesFunction
+    def acceptFunction(qd):
+        for qde in qd:
+            if nfa.acceptFunction(qde) == True:
+                return True
+        return False
+    return dfa_ver2.DFA(statesFunction, nfa.alpha, startState, transitionFunction, acceptFunction)
+"""
+
+
 #*******TASK #25 ************
 # Write a example NFAs.
 # casted to tuple to work with my getAcceptedString function. (was an issue with DFAs)
@@ -82,7 +156,7 @@ def NFA_NoStrings():
         ["0", "1"],
         "0",
         lambda qi, c: "0",
-        lambda qi: False,
+        lambda qi: "q1",
         lambda qi: "0"
     )
 #** dfa accepts even string length
@@ -99,7 +173,7 @@ def NFA_Even_Length():
         ["0", "1"],
         "q0",
         transitionFunction,
-        lambda qi: qi == "q0",
+        lambda qi: qi == ["q0"],
         epsilonFunction
     )
 
@@ -117,7 +191,7 @@ def NFA_Odd_Length():
         ["0", "1"],
         "q0",
         transitionFunction,
-        lambda qi: qi == "q1",
+        lambda qi: qi == ["q1"],
         epsilonFunction
     )
 #NFA N1 from book page #48

@@ -2,8 +2,6 @@ import nfa
 import testDFA_2
 
 NFA_NoStrings = nfa.NFA_NoStrings()
-#NFA_Even
-#NFA_Odd
 NFA_Even_Length = nfa.NFA_Even_Length()
 NFA_Odd_Length = nfa.NFA_Odd_Length()
 NFA_N1 = nfa.NFA_N1()
@@ -13,10 +11,11 @@ NFA_ThreeFromEndIsOne = nfa.NFA_ThreeFromEndIsOne()
 NFA_HasEps = nfa.NFA_HasEps()
 NFA_OneBB = nfa.NFA_OneBB()
 
+"""
 #*******TASK #26 ************
 #nfaTrace(NFA_Even, [], True, True)
 #nfaTrace(NFA_Odd, [], False, True)
-"""
+
 #NFA no strings
 #Always false
 print(nfa.oracle(NFA_NoStrings, [], False))
@@ -89,13 +88,29 @@ print(nfa.oracle(NFA_HasEps, [["1"]] , True))
 print(nfa.oracle(NFA_HasEps, [["2"]] , False))
 print(nfa.oracle(NFA_HasEps, [["0", "0"]] , False))
 print(nfa.oracle(NFA_HasEps, [["0", "0"], ["1"]] , True))
+
 """
 
+"""
 #*******TASK #28 ************
 # Define a data type to represent trace trees.
+# True(accepts) || False(reject) || Branch [q, [tt ...]]
 #*******TASK #29 ************
 #For each example NFA, write a half-dozen trace trees of their behavior.
-#N1
-#print(nfa.forking(NFA_OneBB, []))
-#print(nfa.forking(NFA_OneBB, ["0"]))
-print(nfa.forking(NFA_N1, ["1"]))
+#NFA One Blah Blah
+#[0, False]
+print(nfa.forking(NFA_OneBB, []))
+#[0, [0, False]
+print(nfa.forking(NFA_OneBB, "0"))
+#NFA N1
+#[q0, False]
+print(nfa.forking(NFA_N1, []))
+#[q0, [q0, False]
+print(nfa.forking(NFA_N1, "0"))
+#[q0,[q1, False, [q0, False]]]
+print(nfa.forking(NFA_N1, "1"))
+#[q0,[q1, False, [q0, False]]]
+print(nfa.forking(NFA_N1, "10"))
+#[q0,[q1, False, [q0, False]]]
+print(nfa.forking(NFA_N1, "101"))
+"""

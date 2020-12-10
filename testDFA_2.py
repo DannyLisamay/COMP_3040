@@ -847,7 +847,6 @@ print(dfaEvenSdfaM4)
 dfaStrings001SdfaM4 = dfa_ver2.subset(dfaM3, dfaM4)
 print(dfaEvenSdfaM4)
 """
-
 """
 #*******TASK #20 ************
 #*******TASK #21 ************
@@ -874,9 +873,8 @@ print(dfa_ver2.equality(dfaOdd, complement_dfaOdd))
 print(dfa_ver2.equality(dfaM1, complement_dfaM1))
 print(dfa_ver2.equality(dfaM2, complement_dfaM2))
 print(dfa_ver2.equality(dfaM3, complement_dfaM3))
-"""
 
-"""
+
 #*******TASK #22 ************
 # Verify your complement, union, and intersect functions using the equality function.
 complement_dfaEven = dfaEven.complement()
