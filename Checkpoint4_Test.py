@@ -25,39 +25,40 @@ DFA_HasEps = nfa.nfa2dfa(NFA_HasEps)
 DFA_OneBB = nfa.nfa2dfa(NFA_OneBB)
 """
 
+"""
 #*******TASK #43 ************
 #Write a example regular expressions.
 #Basic regex
 emptyR = regex.Regex_Empty()
-print(emptyR)
+#print(emptyR)
 epsilonR = regex.Regex_Epsilon()
-print(epsilonR)
+#print(epsilonR)
 
 #Example from inclass
 rbin = regex.Regex_Union(regex.Regex_Char(0), regex.Regex_Char(1))
 ronebb = regex.Regex_Circ(regex.Regex_Star(rbin), regex.Regex_Circ(rbin,rbin))
-print(rbin)
-print(ronebb)
+#print(rbin)
+#print(ronebb)
 
 #Third from end is one
 # Left Hand
 #(0 U 1)
 zeroUone = regex.Regex_Union(regex.Regex_Char(0),regex.Regex_Char(1))
-print(zeroUone)
+#print(zeroUone)
 
 #(0 U 1)*
 starZeroUOne = regex.Regex_Star(zeroUone)
-print(starZeroUOne)
+#print(starZeroUOne)
 
 #Right Hand
 #1
 one = regex.Regex_Char(1)
 #1(((0 U 1) C (0 U 1)))
 rh = regex.Regex_Circ(one, regex.Regex_Union(zeroUone,zeroUone))
-print(rh)
+#print(rh)
 #RE...
 thirdFromEndIsOne = regex.Regex_Circ(starZeroUOne, rh)
-print(thirdFromEndIsOne)
+#print(thirdFromEndIsOne)
 
 #Example from textbook 1.56
 a = regex.Regex_Char("a")
@@ -65,18 +66,46 @@ b = regex.Regex_Char("b")
 ab = regex.Regex_Circ(a,b)
 abUa = regex.Regex_Union(ab, a)
 abUaStar = regex.Regex_Star(abUa)
-print(a)
-print(b)
-print(ab)
-print(abUa)
-print(abUaStar)
+#print(a)
+#print(b)
+#print(ab)
+#print(abUa)
+#print(abUaStar)
+
 
 #*******TASK #43 ************
 # Basic regex
-#a should accept a
-#b should accept b
+#a
+#pass
+#a
+#aa
+#fail
+#anything but a
+
+#b
+#pass
+#b
+#bbb
+#fail
+#anything but b
+
 #ab should accept and b
+#pass
+#ab
+#ab
+#fail
+#anything but ab
+
 #abUa should accept a and b or a
+#pass
+#a
+#ab
+#ab
+#aba
+#abab
+#fail
+#any other letters or ending in two b
+#abb
 
 #thirdFromEndIsOne
 #pass
@@ -90,4 +119,15 @@ print(abUaStar)
 #0
 #011
 
-#ronebb
+
+#*******generate tests ************
+regex.generate(emptyR)
+regex.generate(epsilonR)
+regex.generate(a)
+regex.generate(b)
+regex.generate(ab)
+regex.generate(abUaStar)
+regex.generate(rbin)
+regex.generate(ronebb)
+regex.generate(thirdFromEndIsOne)
+""
