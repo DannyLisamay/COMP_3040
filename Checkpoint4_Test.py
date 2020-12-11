@@ -23,6 +23,8 @@ DFA_ThreeFromEndIsOne = nfa.nfa2dfa(NFA_ThreeFromEndIsOne)
 DFA_HasEps = nfa.nfa2dfa(NFA_HasEps)
 DFA_OneBB = nfa.nfa2dfa(NFA_OneBB)
 
+nfa.backtrack(NFA_HasEps, [])
+nfa.kleeneStar(NFA_NoStrings)
 """
 #*******TASK #43 ************
 #Write a example regular expressions.

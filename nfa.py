@@ -75,12 +75,44 @@ def forking_(nfa, qi ,s):
             cont(sp)
     return [qi, children]
 
+"""
+# Backtracking not working correctly
+#*******TASK #32 ************
+#Write a function that given an NFA and a string, determines if the string is accepted.
+def backtrack(n, w):
+    seen = {}
+    for qi in n.statesFunction:
+        seen.update({qi: False})
+    print(seen)
+    queue = []
+    def cont(sp, qj):
+        if not (seen[qj] and seen[qj][sp]):
+            if not seen[qj]:
+                seen[qj] = {}
+            print([[qj][sp]])
+            seen[qj][sp] = True
+            queue.append([qj,sp])
+    cont(w, n.startState)
+    while(queue):
+        [qi, s] = queue.pop()
+        for sp in n.epsilonFunction(qi):
+            cont(sp)
+        if(len(s) == 0):
+            if n.acceptFunction(qi):
+                return True
+        else:
+            [s0, *sp] = s
+            for sp in n.transitionFunction(qi, s0):
+                cont(sp)
+        return False
+""
+
 #*******TASK #36 ************
 # Write a function that takes an NFA and returns a new NFA that accepts a string
 # if it can be broken into N pieces, each accepted by the argument.
 def kleeneStar(x):
     statesFunction = lambda qi: qi == 0 or (qi[0] == 'x' and x.statesFunction(qi[1]))
-    alpha = self.alpha
+    alpha = x.alpha
     startState = 0
     def transitionFunction(qi ,c):
         if qi == 0:
@@ -104,7 +136,7 @@ def kleeneStar(x):
         else:
             return []
     acceptFunction = lambda qi: qi == 0
-    return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction, epsilonFunction)
+    return NFA(statesFunction, alpha, startState, transitionFunction, acceptFunction, epsilonFunction)
 
 #Helper function tag
 def tag(tag, objs):
@@ -118,17 +150,18 @@ def nfa2dfa(nfa):
         qdp = qd
         addedAny = True
         # Seen list set all to false
-        seen = {}
+        seen = { tuple([nfa.startState]) : True}
         for qn in qdp:
-            seen = {qn : False}
+            for qne in nfa.epsilonFunction(qn):
+                seen.update({tuple([qne]): False})
         while(addedAny):
             addedAny = False
             # Itterate over qdp
             for qn in qdp:
                 # Itterate over each element return by epsilonFunction
                 for qne in nfa.epsilonFunction(qn):
-                    if not (seen[qne]):
-                        seen[qne] = True
+                    if not (seen[tuple([qne])]):
+                        seen[tuple([qne])] = True
                         qdp.append(qne)
                         addedAny = True
         return qdp
@@ -146,7 +179,6 @@ def nfa2dfa(nfa):
         return E(map(lambda qn: nfa.transitionFunction(qn, c), (qd)))
     # flatten list of list used for transitionFunction
     def flatten(listOfLists):
-        #rint(list(chain.from_iterable(listOfLists)))
         return list(chain.from_iterable(listOfLists))
     # acceptFunction checks if any elements given array is accepted by nfa statesFunction
     def acceptFunction(qd):
@@ -154,7 +186,7 @@ def nfa2dfa(nfa):
             if nfa.acceptFunction(qde) == True:
                 return True
         return False
-    return dfa_ver2.NFA(statesFunction, nfa.alpha, startState, transitionFunction, acceptFunction)
+    return dfa_ver2.DFA(statesFunction, nfa.alpha, startState, transitionFunction, acceptFunction)
 
 #*******TASK #25 ************
 # Write a example NFAs.
@@ -179,7 +211,7 @@ def NFA_Even_Length():
         else:
             return ["q0"]
     def epsilonFunction(qi):
-        return qi
+        return []
     return NFA(
         lambda qi: qi == "q0" or qi == "q1",
         ["0", "1"],
@@ -197,7 +229,7 @@ def NFA_Odd_Length():
         else:
             return ["q0"]
     def epsilonFunction(qi):
-        return qi
+        return []
     return NFA(
         lambda qi: qi == "q0" or qi == "q1",
         ["0", "1"],
@@ -276,6 +308,8 @@ def NFA_N4():
     def epsilonFunction(qi):
         if qi == "q0":
             return ["q2"]
+        else:
+            return []
     return NFA(
         lambda qi: qi == "q0" or qi == "q1" or qi == "q2",
         ["a", "b"],
@@ -333,8 +367,9 @@ def NFA_HasEps():
             return []
 
     return NFA(
-        lambda qi: qi == "0" or qi == "1" or qi == "2",
-        ["0, 1"],
+        #lambda qi: qi == "0" or qi == "1" or qi == "2",
+        ["0", "1", "2"],
+        ["0", "1"],
         "0",
         transitionFunction,
         lambda qi: qi == "1",
@@ -360,7 +395,7 @@ def NFA_OneBB():
 
     return NFA(
         lambda qi: qi == "0" or qi == "1" or qi == "2" or qi == "3",
-        ["0, 1"],
+        ["0", "1"],
         "0",
         transitionFunction,
         lambda qi: qi == "3",
