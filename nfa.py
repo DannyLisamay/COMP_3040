@@ -75,27 +75,41 @@ def forking_(nfa, qi ,s):
             cont(sp)
     return [qi, children]
 
-"""
-Not working ATM...
 #*******TASK #36 ************
 # Write a function that takes an NFA and returns a new NFA that accepts a string
 # if it can be broken into N pieces, each accepted by the argument.
 def kleeneStar(x):
-    statesFunction = lambda qi: qi is 0 or x.statesFunction(qi)
+    statesFunction = lambda qi: qi == 0 or (qi[0] == 'x' and x.statesFunction(qi[1]))
     alpha = self.alpha
     startState = 0
     def transitionFunction(qi ,c):
-         if qi is 0:
-             return []
-    acceptFunction = lambda qi: qi is 0
+        if qi == 0:
+            return []
+        elif qi[0] == 'x':
+            tag("x", x.transitionFunction(qi[1], c))
+        else:
+            return []
+    acceptFunction = lambda qi: qi == 0
     def epsilonFunction(qi):
-        return qi
-    return NFA(statesFunction, alpha, startState, transitionFunction, acceptFunction, epsilonFunction)
-"""
+        if qi == 0:
+            return [['x', x.startState]]
+        elif qi[0] == 'x':
+            tag("x", _epsilonFunction(qi))
+        else:
+            return []
+    #epsilonFunction helper
+    def _epsilonFunction(qi):
+        if x.epsilonFunction(qi[1]).append(x.acceptFunction(qi[1])):
+            return [0]
+        else:
+            return []
+    acceptFunction = lambda qi: qi == 0
+    return DFA(statesFunction, alpha, startState, transitionFunction, acceptFunction, epsilonFunction)
 
+#Helper function tag
+def tag(tag, objs):
+    return map(lambda o: [tag, o], objs)
 
-"""
-Maybe Working?
 #*******TASK #38 ************
 # Write a function which converts an NFA into a DFA that accepts the same language.
 def nfa2dfa(nfa):
@@ -140,8 +154,7 @@ def nfa2dfa(nfa):
             if nfa.acceptFunction(qde) == True:
                 return True
         return False
-    return dfa_ver2.DFA(statesFunction, nfa.alpha, startState, transitionFunction, acceptFunction)
-"""
+    return dfa_ver2.NFA(statesFunction, nfa.alpha, startState, transitionFunction, acceptFunction)
 
 #*******TASK #25 ************
 # Write a example NFAs.

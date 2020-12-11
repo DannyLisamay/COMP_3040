@@ -75,7 +75,7 @@ class Regex_Star:
     def generate(self):
         # Temp objects, probably not the best way to do this but it works.
         eR = Regex_Empty()
-        cR = Regex_Circ(self.x, self.x)
+        cR = Regex_Circ(self.x, self)
         uR = Regex_Union(eR, cR)
         return uR.generate()
 

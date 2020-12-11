@@ -3,7 +3,6 @@ import testDFA_2
 import nfaTest
 import dfa_ver2
 import regex
-"""
 NFA_NoStrings = nfa.NFA_NoStrings()
 NFA_Even_Length = nfa.NFA_Even_Length()
 NFA_Odd_Length = nfa.NFA_Odd_Length()
@@ -23,7 +22,6 @@ DFA_N4 = nfa.nfa2dfa(NFA_N4)
 DFA_ThreeFromEndIsOne = nfa.nfa2dfa(NFA_ThreeFromEndIsOne)
 DFA_HasEps = nfa.nfa2dfa(NFA_HasEps)
 DFA_OneBB = nfa.nfa2dfa(NFA_OneBB)
-"""
 
 """
 #*******TASK #43 ************
@@ -130,4 +128,4 @@ regex.generate(abUaStar)
 regex.generate(rbin)
 regex.generate(ronebb)
 regex.generate(thirdFromEndIsOne)
-""
+"""
